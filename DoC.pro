@@ -36,4 +36,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    data.json \
+    images/delete.png \
+    images/icon.png \
+    images/program_add.png \
+    images/program_details.png \
+    images/program_main.png
