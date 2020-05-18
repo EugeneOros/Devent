@@ -90,11 +90,15 @@ void Data::addEvent(QDate date, DayEvent event){
     if(!this->contains(date))
         addDay(DayElement(date));
     list<DayElement> dayList = this->daysList;
-    DayElement* dayPtr;
-    for(auto itDay=dayList.begin(); itDay!=dayList.end(); ++itDay){
+    DayElement* dayPtr = nullptr;
+    for(auto itDay=this->daysList.begin(); itDay!=this->daysList.end(); ++itDay){
         if(itDay->getDate() == date){
-            dayPtr = new DayElement(*itDay);
+            dayPtr = &*itDay;
+            break;
         }
+    }
+    if(dayPtr==nullptr){
+        throw "Cant add event pointer to day";
     }
     dayPtr->addEvent(event);
     QJsonArray daysJsonArray = this->jsonObject.value(QString("dayElement")).toArray();

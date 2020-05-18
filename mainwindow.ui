@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>985</width>
-    <height>659</height>
+    <height>641</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -332,7 +332,7 @@ QPushButton:pressed{
             <x>0</x>
             <y>0</y>
             <width>316</width>
-            <height>441</height>
+            <height>423</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -397,10 +397,10 @@ QPushButton:pressed{
       </layout>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="1" column="1" rowspan="4">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_calendar">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -491,6 +491,24 @@ color:  #96a4ad;
 }
 
 </string>
+          </property>
+          <property name="firstDayOfWeek">
+           <enum>Qt::Monday</enum>
+          </property>
+          <property name="gridVisible">
+           <bool>false</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QCalendarWidget::SingleSelection</enum>
+          </property>
+          <property name="horizontalHeaderFormat">
+           <enum>QCalendarWidget::ShortDayNames</enum>
+          </property>
+          <property name="verticalHeaderFormat">
+           <enum>QCalendarWidget::NoVerticalHeader</enum>
+          </property>
+          <property name="navigationBarVisible">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

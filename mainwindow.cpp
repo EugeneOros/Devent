@@ -76,7 +76,6 @@ void MainWindow::on_calendarWidget_selectionChanged()
     if(day != nullptr){
         for(auto itEvent=day->getEvents()->begin(); itEvent!=day->getEvents()->end(); ++itEvent){
             QFrame *newFrame = new FrameEvent(day, &*itEvent, data, this);
-//            connect(newFrame, SIGNAL (clicked()), this, SLOT (goToEventDetails(&*itEvent)));
             layout->addWidget(newFrame);
         }
     }
@@ -130,6 +129,8 @@ void MainWindow::on_pushButton_options_clicked()
 
 void MainWindow::on_pushButton_addEvent_clicked()
 {
+//    ui->calendarWidget->
+//    ui->calendarWidget->setSelectedDate(QDate(2020, 05, 12));
     bool isCorrect = true;
     if(ui->lineEdit_text->text() == ""){
         isCorrect = false;
@@ -141,7 +142,7 @@ void MainWindow::on_pushButton_addEvent_clicked()
     if(ui->lineEdit_hourEnd->text()==""){
         isCorrect = false;
     }
-    if(ui->lineEdit_minuteEnd->text()==""){
+    if(ui->lineEdit_minuteStart->text()==""){
         isCorrect = false;
     }
     if(ui->lineEdit_minuteEnd->text()==""){
@@ -155,7 +156,19 @@ void MainWindow::on_pushButton_addEvent_clicked()
         int minutesEnd = ui->lineEdit_minuteEnd->text().toUInt();
         ui->label_info->setStyleSheet("QLabel{text-align: center;font: 10pt \"Corbel\";color: #83a836;}");
         ui->label_info->setText("Info. The event was seccesfuly added");
-        data->addEvent(ui->calendarWidget->selectedDate(),DayEvent(text, QTime(hoursStart, minutesStart, 0), QTime(hoursEnd, minutesEnd, 0), false));
+        try {
+            data->addEvent(ui->calendarWidget->selectedDate(),DayEvent(text, QTime(hoursStart, minutesStart, 0), QTime(hoursEnd, minutesEnd, 0), false));
+            ui->lineEdit_text->setText("");
+            ui->lineEdit_hourStart->setText("");
+            ui->lineEdit_hourEnd->setText("");
+            ui->lineEdit_minuteStart->setText("");
+            ui->lineEdit_minuteEnd->setText("");
+            QDate currentDate = ui->calendarWidget->selectedDate();
+            ui->calendarWidget->setSelectedDate(ui->calendarWidget->maximumDate());
+            ui->calendarWidget->setSelectedDate(currentDate);
+        }catch (QString msg) {
+            ui->label_info->setText(msg);
+        }
     }else{
         ui->label_info->setStyleSheet("QLabel{text-align: center;font: 10pt \"Corbel\";color: #db0000;}");
         ui->label_info->setText("Warning. Fill all fields properly");
@@ -163,7 +176,7 @@ void MainWindow::on_pushButton_addEvent_clicked()
 
 }
 
-/////////////////////////////////////////////////////////////////////
+//___________________________________________________________
 
 FrameEvent::FrameEvent( DayElement *day, DayEvent *event, Data *data, MainWindow *parent) : QFrame(parent), parent(parent), data(data){
     this->event = event;
@@ -229,8 +242,6 @@ void FrameEvent::onClick(){
 
 
 void FrameEvent::onDone(){
-//    this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"
-//                        "QFrame:hover{background-color: #6df;}");
     data->setIsDone(day, event, !(event->getIsDone()));
     if(this->checkBox->isChecked()){
         this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"

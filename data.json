@@ -1,52 +1,43 @@
 {
-    "dayElement": [{
+    "dayElement": [
+        {
             "day": 20,
-            "events": [{
-                "hoursEnd": 12,
-                "hoursStart": 12,
-                "isDone": false,
-                "mail": "yvhenii.oros@gmail.com",
-                "minutesBefore": 10,
-                "minutesEnd": 30,
-                "minutesStart": 30,
-                "text": "clean your bathroom"
-            }],
+            "events": [
+                {
+                    "hoursEnd": 12,
+                    "hoursStart": 12,
+                    "isDone": false,
+                    "mail": "yvhenii.oros@gmail.com",
+                    "minutesBefore": 10,
+                    "minutesEnd": 30,
+                    "minutesStart": 30,
+                    "text": "clean your bathroom"
+                }
+            ],
             "month": 5,
             "year": 2020
         },
         {
             "day": 4,
-            "events": [{
-                "hoursEnd": 23,
-                "hoursStart": 22,
-                "isDone": false,
-                "mail": "yevhenii.oros@gmail.com",
-                "minutesBefore": 30,
-                "minutesEnd": 40,
-                "minutesStart": 20,
-                "text": "umyć ręce"
-            }],
+            "events": [
+                {
+                    "hoursEnd": 23,
+                    "hoursStart": 22,
+                    "isDone": false,
+                    "mail": "yevhenii.oros@gmail.com",
+                    "minutesBefore": 30,
+                    "minutesEnd": 40,
+                    "minutesStart": 20,
+                    "text": "umyć ręce"
+                }
+            ],
             "month": 7,
             "year": 2009
         },
         {
-            "day": 11,
-            "events": [{
-                "hoursEnd": 12,
-                "hoursStart": 12,
-                "isDone": false,
-                "mail": "yvhenii.oros@gmail.com",
-                "minutesBefore": 10,
-                "minutesEnd": 30,
-                "minutesStart": 30,
-                "text": "make bad"
-            }],
-            "month": 5,
-            "year": 2020
-        },
-        {
             "day": 17,
-            "events": [{
+            "events": [
+                {
                     "hoursEnd": 12,
                     "hoursStart": 12,
                     "isDone": false,
@@ -75,6 +66,84 @@
                     "minutesEnd": 30,
                     "minutesStart": 40,
                     "text": "clean "
+                }
+            ],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 11,
+            "events": [
+                {
+                    "hoursEnd": 12,
+                    "hoursStart": 12,
+                    "isDone": false,
+                    "mail": "yvhenii.oros@gmail.com",
+                    "minutesBefore": 10,
+                    "minutesEnd": 30,
+                    "minutesStart": 30,
+                    "text": "make bad"
+                },
+                {
+                    "hoursEnd": 23,
+                    "hoursStart": 22,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 0,
+                    "minutesStart": 50,
+                    "text": "do English"
+                },
+                {
+                    "hoursEnd": 13,
+                    "hoursStart": 12,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 12,
+                    "minutesStart": 13,
+                    "text": "Do washing up"
+                }
+            ],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 25,
+            "events": [
+                {
+                    "hoursEnd": 23,
+                    "hoursStart": 23,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 23,
+                    "minutesStart": 23,
+                    "text": "23"
+                }
+            ],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 18,
+            "events": [
+            ],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 19,
+            "events": [
+                {
+                    "hoursEnd": 14,
+                    "hoursStart": 14,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 14,
+                    "minutesStart": 14,
+                    "text": "14"
                 }
             ],
             "month": 5,
