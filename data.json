@@ -1,0 +1,84 @@
+{
+    "dayElement": [{
+            "day": 20,
+            "events": [{
+                "hoursEnd": 12,
+                "hoursStart": 12,
+                "isDone": false,
+                "mail": "yvhenii.oros@gmail.com",
+                "minutesBefore": 10,
+                "minutesEnd": 30,
+                "minutesStart": 30,
+                "text": "clean your bathroom"
+            }],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 4,
+            "events": [{
+                "hoursEnd": 23,
+                "hoursStart": 22,
+                "isDone": false,
+                "mail": "yevhenii.oros@gmail.com",
+                "minutesBefore": 30,
+                "minutesEnd": 40,
+                "minutesStart": 20,
+                "text": "umyć ręce"
+            }],
+            "month": 7,
+            "year": 2009
+        },
+        {
+            "day": 11,
+            "events": [{
+                "hoursEnd": 12,
+                "hoursStart": 12,
+                "isDone": false,
+                "mail": "yvhenii.oros@gmail.com",
+                "minutesBefore": 10,
+                "minutesEnd": 30,
+                "minutesStart": 30,
+                "text": "make bad"
+            }],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 17,
+            "events": [{
+                    "hoursEnd": 12,
+                    "hoursStart": 12,
+                    "isDone": false,
+                    "mail": "yvhenii.oros@gmail.com",
+                    "minutesBefore": 10,
+                    "minutesEnd": 30,
+                    "minutesStart": 30,
+                    "text": "clean your bathroom"
+                },
+                {
+                    "hoursEnd": 13,
+                    "hoursStart": 12,
+                    "isDone": true,
+                    "mail": "yvhenii.oros@gmail.com",
+                    "minutesBefore": 10,
+                    "minutesEnd": 30,
+                    "minutesStart": 30,
+                    "text": "your bathroom"
+                },
+                {
+                    "hoursEnd": 12,
+                    "hoursStart": 14,
+                    "isDone": false,
+                    "mail": "yvhenii.oros@gmail.com",
+                    "minutesBefore": 10,
+                    "minutesEnd": 30,
+                    "minutesStart": 40,
+                    "text": "clean "
+                }
+            ],
+            "month": 5,
+            "year": 2020
+        }
+    ]
+}

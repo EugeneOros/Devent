@@ -150,7 +150,10 @@ QPushButton:pressed{
        <property name="bottomMargin">
         <number>20</number>
        </property>
-       <property name="spacing">
+       <property name="horizontalSpacing">
+        <number>7</number>
+       </property>
+       <property name="verticalSpacing">
         <number>0</number>
        </property>
        <item row="1" column="2">
@@ -635,7 +638,7 @@ color:  #96a4ad;
 }</string>
           </property>
           <property name="text">
-           <string>Email to witch email will be sent</string>
+           <string>Email to witch email will be sent:</string>
           </property>
          </widget>
         </item>

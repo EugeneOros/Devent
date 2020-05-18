@@ -1,13 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDir>
+
+
 
 
 using namespace std;
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
-    this->setWindowIcon(QIcon("C:/Users/Eugen/Downloads/Devent/icon.png"));
+    this->setWindowIcon(QIcon(QCoreApplication::applicationDirPath() + "/../../DoC/images/icon.png"));
     this->setWindowTitle("Devent");
-    this->data = new Data("C:/Users/Eugen/Downloads/Devent/data.json");
+    this->data = new Data(QCoreApplication::applicationDirPath() + "/../../DoC/data.json");
 
 
 
@@ -35,7 +38,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 
                         "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{background: none;}");
-//    ui->label->setText(data->getDaysList().back().toString());
+    QPixmap pixmap(QCoreApplication::applicationDirPath() + "/../../DoC/images/icon.png");
+    ui->label_picon->setPixmap(pixmap);
 
 }
 
@@ -199,7 +203,7 @@ FrameEvent::FrameEvent( DayElement *day, DayEvent *event, Data *data, MainWindow
     QPushButton *pushButton_delete = new QPushButton(this);
     pushButton_delete->setFixedSize(QSize(40,40));
     QIcon icon;
-    icon.addFile("C:/Users/Eugen/Downloads/Devent/delete.png");
+    icon.addFile(QCoreApplication::applicationDirPath() + "/../../DoC/images/delete.png");
     pushButton_delete->setIcon(icon);
     pushButton_delete->setIconSize(QSize(40, 40));
     pushButton_delete->setStyleSheet("""QPushButton{border:none;background-color:  transparent;}""");
@@ -231,10 +235,8 @@ void FrameEvent::onDone(){
     if(this->checkBox->isChecked()){
         this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"
                                 "QFrame:hover{background-color: #6df;}");
-        this->pushButton_text->setText("yes");
     }else{
         this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;}"
                                 "QFrame:hover{background-color: #6df;}");
-        this->pushButton_text->setText("no");
     }
 }
