@@ -35,6 +35,8 @@ public:
 
     QString getTmp(){return this->tmp;}
 
+    DayElement* getDay(QDate date);
+
     void setIsDone(DayElement *dayElement, DayEvent *event, bool isDone);
 
     void write();

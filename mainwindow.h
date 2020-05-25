@@ -23,6 +23,13 @@
 #include <QSpacerItem>
 #include <Qt>
 #include <QCheckBox>
+#include <QObject>
+#include <QTimer>
+#include <QDebug>
+#include <QMessageBox>
+#include <QSizePolicy>
+#include "frameevent.h"
+#include "timer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,43 +38,6 @@ QT_END_NAMESPACE
 enum PageName{
     EVENT, CALENDAR, ADD, OPTIONS
 };
-
-class MainWindow;
-
-class FrameEvent : public QFrame
-{
-    Q_OBJECT
-
-public:
-    FrameEvent( DayElement* day, DayEvent* event, Data* data,  MainWindow *parent = nullptr );
-
-    ~FrameEvent(){};
-
-private slots:
-    void onDelete();
-
-    void onClick();
-
-    void onDone();
-
-private:
-    MainWindow *parent;
-
-    DayElement *day;
-
-    DayEvent *event;
-
-    Data *data;
-
-    QPushButton *pushButton_text;
-
-    QCheckBox *checkBox;
-};
-
-
-
-
-
 
 
 class MainWindow : public QMainWindow
@@ -97,10 +67,13 @@ private slots:
 
     void on_pushButton_addEvent_clicked();
 
+    void on_timeout();
 
 private:
     Data *data;
     Ui::MainWindow *ui;
+    QTimer* dayTimer;
+    Timer* timer;
 };
 
 

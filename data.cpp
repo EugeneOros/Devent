@@ -34,6 +34,15 @@ Data::Data(QString filePath)
 }
 
 
+DayElement* Data::getDay(QDate date){
+    for(auto itDay = daysList.begin(); itDay != daysList.end(); ++itDay){
+        if(itDay->getDate() == date){
+            return &*itDay;
+        }
+    }
+    return nullptr;
+}
+
 
 QJsonObject Data::eventToJsonObject(DayEvent event){
     QJsonObject obj
@@ -205,15 +214,15 @@ void Data::removeEvent(QDate date, QTime timeStart, QTime timeEnd){
 
 
 bool Data::contains(QDate date){
-    return findDay(date) != NULL;
+    return findDay(date) != nullptr;
 }
 
 
 
 DayElement* Data::findDay(QDate date){
-//    if(this->daysList.size()==1){
-//        return &*this->daysList.begin();
-//    }
+    if(this->daysList.size()==1){
+        return &*this->daysList.begin();
+    }
     for(auto itDay=this->daysList.begin(); itDay!=this->daysList.end(); ++itDay){
         if(itDay->getDate() == date){
             return &*itDay;

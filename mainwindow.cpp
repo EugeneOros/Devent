@@ -8,10 +8,17 @@
 using namespace std;
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
+    this->dayTimer = new QTimer(this);
+    this->dayTimer->setInterval(86400001-(QTime::currentTime().hour()*3600+QTime::currentTime().minute()*60+QTime::currentTime().second())*1000);
+    connect(dayTimer, SIGNAL(timeout()), this, SLOT(on_timeout()));
+    dayTimer->start();
     this->setWindowIcon(QIcon(QCoreApplication::applicationDirPath() + "/../../DoC/images/icon.png"));
     this->setWindowTitle("Devent");
     this->data = new Data(QCoreApplication::applicationDirPath() + "/../../DoC/data.json");
-
+    if(data->contains(QDate::currentDate()))
+         this->timer = new Timer(data->findDay(QDate::currentDate())->getEvents());
+    else
+        this->timer = new Timer();
 
 
     //start state
@@ -40,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
                         "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{background: none;}");
     QPixmap pixmap(QCoreApplication::applicationDirPath() + "/../../DoC/images/icon.png");
     ui->label_picon->setPixmap(pixmap);
+    ui->calendarWidget->setSelectedDate(ui->calendarWidget->maximumDate());
+    ui->calendarWidget->setSelectedDate(QDate::currentDate());
 
 }
 
@@ -129,8 +138,6 @@ void MainWindow::on_pushButton_options_clicked()
 
 void MainWindow::on_pushButton_addEvent_clicked()
 {
-//    ui->calendarWidget->
-//    ui->calendarWidget->setSelectedDate(QDate(2020, 05, 12));
     bool isCorrect = true;
     if(ui->lineEdit_text->text() == ""){
         isCorrect = false;
@@ -158,6 +165,10 @@ void MainWindow::on_pushButton_addEvent_clicked()
         ui->label_info->setText("Info. The event was seccesfuly added");
         try {
             data->addEvent(ui->calendarWidget->selectedDate(),DayEvent(text, QTime(hoursStart, minutesStart, 0), QTime(hoursEnd, minutesEnd, 0), false));
+
+            if(ui->calendarWidget->selectedDate() == QDate::currentDate())
+                this->timer->setEvents(data->findDay(QDate::currentDate())->getEvents());
+
             ui->lineEdit_text->setText("");
             ui->lineEdit_hourStart->setText("");
             ui->lineEdit_hourEnd->setText("");
@@ -176,78 +187,11 @@ void MainWindow::on_pushButton_addEvent_clicked()
 
 }
 
-//___________________________________________________________
-
-FrameEvent::FrameEvent( DayElement *day, DayEvent *event, Data *data, MainWindow *parent) : QFrame(parent), parent(parent), data(data){
-    this->event = event;
-    this->day = day;
-
-    QHBoxLayout *layout = new QHBoxLayout();
-    layout->setContentsMargins(11, 0, 11, 0);
-    this->setLayout(layout);
-    if(event->getIsDone()){
-        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"
-                            "QFrame:hover{background-color: #6df;}");
-    }else{
-        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;}"
-                            "QFrame:hover{background-color: #6df;}");
-    }
-
-
-    checkBox = new QCheckBox(this);
-    checkBox->setTristate(event->getIsDone());
-    checkBox->setFixedSize(QSize(15,15));
-    checkBox->setStyleSheet("QCheckBox{border:none;background-color:  transparent;}");
-    checkBox->setTristate(false);
-    this->checkBox->setChecked(event->getIsDone());
-    connect(checkBox, SIGNAL (toggled(bool)), this, SLOT (onDone()));
-
-    layout->addWidget(checkBox);
-
-    pushButton_text = new QPushButton(event->getText(),this);
-    pushButton_text->setStyleSheet("QPushButton {font: 13pt \"Corbel\"; color: #f4fafb; background-color:  transparent;}"
-                              "QPushButton:hover{background-color:  transparent; color: #f4fafb;}"
-                              "QPushButton:pressed{background-color:  transparent;color: #43454f;}");
-    pushButton_text->setFixedHeight(60);
-    connect(pushButton_text, SIGNAL (clicked()), this, SLOT (onClick()));
-    layout->addWidget(pushButton_text);
-
-
-    QPushButton *pushButton_delete = new QPushButton(this);
-    pushButton_delete->setFixedSize(QSize(40,40));
-    QIcon icon;
-    icon.addFile(QCoreApplication::applicationDirPath() + "/../../DoC/images/delete.png");
-    pushButton_delete->setIcon(icon);
-    pushButton_delete->setIconSize(QSize(40, 40));
-    pushButton_delete->setStyleSheet("""QPushButton{border:none;background-color:  transparent;}""");
-    connect(pushButton_delete, SIGNAL (clicked()), this, SLOT (onDelete()));
-//    pushButton_delete->setCursor(QCursor(Qt.PointingHandCursor));
-    layout->addWidget(pushButton_delete);
-
+void MainWindow::on_timeout()
+{
+    this->timer->setEvents(data->findDay(QDate::currentDate())->getEvents());
+    this->dayTimer->stop();
+    this->dayTimer->setInterval(86400001);
+    this->dayTimer->start();
 }
 
-void FrameEvent::onDelete(){
-    data->removeEvent(day->getDate(), event->getTimeStart(), event->getTimeEnd());
-    this->pushButton_text->setText(data->getTmp());
-    this->deleteLater();
-
-}
-
-void FrameEvent::onClick(){
-    if(parent != nullptr){
-        this->parent->goToEventDetails(event);
-    }
-}
-
-
-
-void FrameEvent::onDone(){
-    data->setIsDone(day, event, !(event->getIsDone()));
-    if(this->checkBox->isChecked()){
-        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"
-                                "QFrame:hover{background-color: #6df;}");
-    }else{
-        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;}"
-                                "QFrame:hover{background-color: #6df;}");
-    }
-}

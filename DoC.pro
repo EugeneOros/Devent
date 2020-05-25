@@ -19,14 +19,20 @@ SOURCES += \
     data.cpp \
     dayelement.cpp \
     dayevent.cpp \
+    frameevent.cpp \
+    mail.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    timer.cpp
 
 HEADERS += \
     data.h \
     dayelement.h \
     dayevent.h \
-    mainwindow.h
+    frameevent.h \
+    mail.h \
+    mainwindow.h \
+    timer.h
 
 FORMS += \
     mainwindow.ui
@@ -43,3 +49,21 @@ DISTFILES += \
     images/program_add.png \
     images/program_details.png \
     images/program_main.png
+
+#SUBDIRS += \
+#    SmtpClient-for-Qt/SMTPEmail.pro \
+#    SmtpClient-for-Qt/SMTPEmail.pro \
+#    SmtpClient-for-Qt/demos/demo1/demo1.pro \
+#    SmtpClient-for-Qt/demos/demo1/demo1.pro \
+#    SmtpClient-for-Qt/demos/demo2/demo2.pro \
+#    SmtpClient-for-Qt/demos/demo2/demo2.pro \
+#    SmtpClient-for-Qt/demos/demo3/demo3.pro \
+#    SmtpClient-for-Qt/demos/demo3/demo3.pro \
+#    SmtpClient-for-Qt/demos/demo4/demo4.pro \
+#    SmtpClient-for-Qt/demos/demo4/demo4.pro
+
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../blat3222/full/ -lblat
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../blat3222/full/ -lblatd
+
+INCLUDEPATH += $$PWD/../blat3222/full
+DEPENDPATH += $$PWD/../blat3222/full
