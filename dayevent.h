@@ -53,6 +53,10 @@ public:
         this->isDone = other.isDone;
         this->minutsBefore = other.minutsBefore;
     }
+
+    bool operator<(const DayEvent& other){
+        return this->timeStart < other.timeStart;
+    }
 };
 
 #endif // DAYEVENT_H

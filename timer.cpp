@@ -47,7 +47,8 @@ void Timer::setMinutesList(){
      this->minutesList.clear();
     this->minutesList.clear();
     for(auto itEvent = this->events->begin(); itEvent != this->events->end(); ++itEvent){
-        this->minutesList.push_back(itEvent->getTimeStart().hour()*60+itEvent->getTimeStart().minute() - itEvent->getMinutesBefore());
+        if (itEvent->getMail() != "")
+            this->minutesList.push_back(itEvent->getTimeStart().hour()*60+itEvent->getTimeStart().minute() - itEvent->getMinutesBefore());
     }
     this->minutesList.sort();
 }
@@ -76,7 +77,7 @@ void Timer::on_timeout()
         }
     }
     this->messageBox = new QMessageBox();
-    this->messageBox->setText("Event heppening soon\n" + currentEvent->getText());
+    this->messageBox->setText("Event heppening soon\n" + currentEvent->getText()+"\n"+currentEvent->getMail());
     messageBox->setWindowTitle("Devent");
     messageBox->setWindowIcon(QIcon(QCoreApplication::applicationDirPath() + "/../../DoC/images/icon.png"));
     messageBox->setSizePolicy(QSizePolicy(QSizePolicy::Policy(500), QSizePolicy::Policy(1000)));

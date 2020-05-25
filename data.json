@@ -79,23 +79,6 @@
             "year": 2020
         },
         {
-            "day": 19,
-            "events": [
-                {
-                    "hoursEnd": 14,
-                    "hoursStart": 14,
-                    "isDone": false,
-                    "mail": "",
-                    "minutesBefore": 0,
-                    "minutesEnd": 14,
-                    "minutesStart": 14,
-                    "text": "14"
-                }
-            ],
-            "month": 5,
-            "year": 2020
-        },
-        {
             "day": 17,
             "events": [
                 {
@@ -143,8 +126,18 @@
             "year": 2020
         },
         {
-            "day": 26,
+            "day": 19,
             "events": [
+                {
+                    "hoursEnd": 14,
+                    "hoursStart": 14,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 14,
+                    "minutesStart": 14,
+                    "text": "14"
+                },
                 {
                     "hoursEnd": 12,
                     "hoursStart": 12,
@@ -153,7 +146,7 @@
                     "minutesBefore": 0,
                     "minutesEnd": 12,
                     "minutesStart": 12,
-                    "text": "go to the meeting"
+                    "text": "fdsafsa"
                 }
             ],
             "month": 5,
@@ -171,36 +164,6 @@
                     "minutesEnd": 20,
                     "minutesStart": 48,
                     "text": "do this"
-                },
-                {
-                    "hoursEnd": 20,
-                    "hoursStart": 17,
-                    "isDone": false,
-                    "mail": "",
-                    "minutesBefore": 0,
-                    "minutesEnd": 20,
-                    "minutesStart": 28,
-                    "text": "yep we do it"
-                },
-                {
-                    "hoursEnd": 20,
-                    "hoursStart": 17,
-                    "isDone": false,
-                    "mail": "",
-                    "minutesBefore": 0,
-                    "minutesEnd": 20,
-                    "minutesStart": 43,
-                    "text": "math classes"
-                },
-                {
-                    "hoursEnd": 18,
-                    "hoursStart": 18,
-                    "isDone": false,
-                    "mail": "",
-                    "minutesBefore": 0,
-                    "minutesEnd": 20,
-                    "minutesStart": 0,
-                    "text": "dinner"
                 },
                 {
                     "hoursEnd": 18,
@@ -243,34 +206,111 @@
                     "text": "go to bathroom"
                 },
                 {
-                    "hoursEnd": 19,
-                    "hoursStart": 18,
-                    "isDone": false,
+                    "hoursEnd": 20,
+                    "hoursStart": 17,
+                    "isDone": true,
                     "mail": "",
                     "minutesBefore": 0,
-                    "minutesEnd": 19,
-                    "minutesStart": 11,
-                    "text": "hjkhjh"
+                    "minutesEnd": 20,
+                    "minutesStart": 43,
+                    "text": "math classes"
                 },
                 {
-                    "hoursEnd": 22,
+                    "hoursEnd": 18,
                     "hoursStart": 18,
+                    "isDone": true,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 20,
+                    "minutesStart": 0,
+                    "text": "dinner"
+                },
+                {
+                    "hoursEnd": 15,
+                    "hoursStart": 15,
                     "isDone": false,
                     "mail": "",
                     "minutesBefore": 0,
-                    "minutesEnd": 22,
-                    "minutesStart": 34,
-                    "text": "12"
+                    "minutesEnd": 30,
+                    "minutesStart": 15,
+                    "text": "make breakfest"
                 },
                 {
                     "hoursEnd": 23,
-                    "hoursStart": 18,
+                    "hoursStart": 12,
                     "isDone": false,
                     "mail": "",
                     "minutesBefore": 0,
-                    "minutesEnd": 23,
-                    "minutesStart": 39,
-                    "text": "23"
+                    "minutesEnd": 12,
+                    "minutesStart": 32,
+                    "text": "432"
+                },
+                {
+                    "hoursEnd": -1,
+                    "hoursStart": 23,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": -1,
+                    "minutesStart": 19,
+                    "text": "1234"
+                },
+                {
+                    "hoursEnd": 23,
+                    "hoursStart": 23,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 56,
+                    "minutesStart": 54,
+                    "text": "2343"
+                },
+                {
+                    "hoursEnd": 12,
+                    "hoursStart": 12,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 12,
+                    "minutesStart": 12,
+                    "text": "12345566"
+                }
+            ],
+            "month": 5,
+            "year": 2020
+        },
+        {
+            "day": 26,
+            "events": [
+                {
+                    "hoursEnd": 12,
+                    "hoursStart": 12,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 12,
+                    "minutesStart": 12,
+                    "text": "go to the meeting"
+                },
+                {
+                    "hoursEnd": 23,
+                    "hoursStart": 23,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 50,
+                    "minutesStart": 23,
+                    "text": "lern some English"
+                },
+                {
+                    "hoursEnd": 23,
+                    "hoursStart": 23,
+                    "isDone": false,
+                    "mail": "",
+                    "minutesBefore": 0,
+                    "minutesEnd": 59,
+                    "minutesStart": 58,
+                    "text": "go to dantist"
                 }
             ],
             "month": 5,

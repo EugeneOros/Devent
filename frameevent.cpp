@@ -11,7 +11,7 @@ FrameEvent::FrameEvent( DayElement *day, DayEvent *event, Data *data, MainWindow
     layout->setContentsMargins(11, 0, 11, 0);
     this->setLayout(layout);
     if(event->getIsDone()){
-        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"
+        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #83a836;}"
                             "QFrame:hover{background-color: #6df;}");
     }else{
         this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;}"
@@ -46,7 +46,6 @@ FrameEvent::FrameEvent( DayElement *day, DayEvent *event, Data *data, MainWindow
     pushButton_delete->setIconSize(QSize(40, 40));
     pushButton_delete->setStyleSheet("""QPushButton{border:none;background-color:  transparent;}""");
     connect(pushButton_delete, SIGNAL (clicked()), this, SLOT (onDelete()));
-//    pushButton_delete->setCursor(QCursor(Qt.PointingHandCursor));
     layout->addWidget(pushButton_delete);
 
 }
@@ -69,7 +68,7 @@ void FrameEvent::onClick(){
 void FrameEvent::onDone(){
     data->setIsDone(day, event, !(event->getIsDone()));
     if(this->checkBox->isChecked()){
-        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #0f4;}"
+        this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;background-color: #83a836;}"
                                 "QFrame:hover{background-color: #6df;}");
     }else{
         this->setStyleSheet("QFrame{border-bottom: 1px solid #6df; border-radius:20px;}"

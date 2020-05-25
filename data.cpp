@@ -34,6 +34,10 @@ Data::Data(QString filePath)
 }
 
 
+
+Data::~Data(){
+}
+
 DayElement* Data::getDay(QDate date){
     for(auto itDay = daysList.begin(); itDay != daysList.end(); ++itDay){
         if(itDay->getDate() == date){
@@ -159,6 +163,42 @@ void Data::setIsDone(DayElement *dayElement, DayEvent *event, bool isDone){
        return;
    }
    event->setIsDone(isDone);
+
+
+
+   QJsonArray daysJsonArray = this->jsonObject.value(QString("dayElement")).toArray();
+   QJsonArray eventJsonArray = {};
+   QJsonObject dayJsonObject;
+   for(auto itJsonDay=daysJsonArray.begin(); itJsonDay!=daysJsonArray.end(); ++itJsonDay){
+
+       if(itJsonDay->toObject()["day"].toInt()==dayElement->getDate().day() && itJsonDay->toObject()["month"].toInt()==dayElement->getDate().month() && itJsonDay->toObject()["year"].toInt()==dayElement->getDate().year()){
+
+           eventJsonArray = itJsonDay->toObject().value(QString("events")).toArray();
+           for(auto itJsonEvent=eventJsonArray.begin(); itJsonEvent!=eventJsonArray.end(); ++itJsonEvent)
+           {
+
+               if(itJsonEvent->toObject()["hoursStart"].toInt()==event->getTimeStart().hour() &&
+                       itJsonEvent->toObject()["minutesStart"].toInt()==event->getTimeStart().minute() &&
+                       itJsonEvent->toObject()["hoursEnd"].toInt()==event->getTimeEnd().hour() &&
+                       itJsonEvent->toObject()["minutesEnd"].toInt()==event->getTimeEnd().minute()){
+                   eventJsonArray.erase(itJsonEvent);
+                   eventJsonArray.append(eventToJsonObject(*event));
+                   break;
+               }
+
+           }
+
+           dayJsonObject = itJsonDay->toObject();
+           dayJsonObject["events"] = eventJsonArray;
+           daysJsonArray.erase(itJsonDay);
+           break;
+       }
+   }
+
+   daysJsonArray.append(dayJsonObject);
+   this->jsonObject["dayElement"] = daysJsonArray;
+
+   this->write();
 }
 
 
@@ -218,7 +258,6 @@ bool Data::contains(QDate date){
 }
 
 
-
 DayElement* Data::findDay(QDate date){
     if(this->daysList.size()==1){
         return &*this->daysList.begin();
@@ -233,17 +272,6 @@ DayElement* Data::findDay(QDate date){
 
 
 
-
-
-
-
-
-Data::~Data(){
-
-}
-
-
-
 void Data::write(){
     QFile file;
     file.setFileName(filePath);
@@ -253,76 +281,3 @@ void Data::write(){
     file.close();
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-//list<DayElement> Data::getDaysList(){
-//    return this->daysList;
-//      //open file
-//      QString strFile;
-//      QFile file;
-//      file.setFileName("C:/Users/Eugen/Downloads/data.json");
-//      file.open(QIODevice::ReadOnly | QIODevice::Text);
-//      strFile = file.readAll();
-//      file.close();
-//      //get array of days
-//      jsonQDocumen = QJsonDocument::fromJson(strFile.toUtf8());
-//      QJsonObject mainQObject = doc.object();
-//      QJsonValue daysQValue = mainQObject.value(QString("dayElement"));
-//      QJsonArray daysQArray = daysQValue.toArray();
-//      //write to days list
-//      list<DayElement> daysList;
-//      for(int i=0; i<daysQArray.size(); i++){
-//          QJsonObject dayQObject = daysQArray.takeAt(i).toObject();
-//          DayElement dayElement(dayQObject["day"].toInt(), dayQObject["month"].toInt(), dayQObject["year"].toInt());
-
-//          QJsonArray eventsQArray = dayQObject["dayEvents"].toArray();
-//          for(int j=0; j<eventsQArray.size(); j++){
-//              QJsonObject eventQObject = eventsQArray.takeAt(j).toObject();
-//              QTime timeStart(eventQObject["hoursStart"].toInt(), eventQObject["minutesStart"].toInt(), 0);
-//              QTime timeEnd(eventQObject["hoursEnd"].toInt(), eventQObject["minutesEnd"].toInt(), 0);
-//              DayEvent event(eventQObject["text"].toString(), timeStart, timeEnd, false, eventQObject["mail"].toString(), eventQObject["minutesBefore"].toInt());
-//              dayElement.addEvent(event);
-//          }
-//          daysList.push_back(dayElement);
-//      }
-//      return daysList;
-//}
-
-
-
-//      QJsonDocument doc(value.toArray().takeAt(0).toObject());
-//      int a = value.toArray().takeAt(0).toObject()["day"].toInt();
-//      QString s = QString::number(a);
-
-//      value.toArray().takeAt(0).toObject()["day"];
-//      QString strJson(doc.toJson(QJsonDocument::Indented));
-
-
-//      list<DayElement> days();
-//      qWarning() << val;
-//      QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-//      QJsonObject sett2 = d.object();
-//      QJsonValue value = sett2.value(QString("appName"));
-//      qWarning() << value;
-//      QJsonObject item = value.toObject();
-//      qWarning() << tr("QJsonObject of description: ") << item;
-
-//      /* in case of string value get value and convert into string*/
-//      qWarning() << tr("QJsonObject[appName] of description: ") << item["description"];
-//      QJsonValue subobj = item["description"];
-//      qWarning() << subobj.toString();
-
-//      /* in case of array get array and convert into string*/
-//      qWarning() << tr("QJsonObject[appName] of value: ") << item["imp"];
-//      QJsonArray test = item["imp"].toArray();
-//      qWarning() << test[1].toString();

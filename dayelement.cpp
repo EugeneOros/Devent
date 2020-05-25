@@ -5,6 +5,7 @@ DayElement::DayElement(QDate date):date(date){
 }
 void DayElement::addEvent(DayEvent event){
      events.push_back(event);
+//     this->events.sort();
 }
 void DayElement::removeEvent(DayEvent event){
     this->events.remove(event);

@@ -36,7 +36,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 enum PageName{
-    EVENT, CALENDAR, ADD, OPTIONS
+    EVENT, CALENDAR, ADD, INFO
 };
 
 
@@ -68,6 +68,8 @@ private slots:
     void on_pushButton_addEvent_clicked();
 
     void on_timeout();
+
+    void on_pushButton_sendMail_clicked();
 
 private:
     Data *data;

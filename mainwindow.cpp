@@ -4,7 +4,6 @@
 
 
 
-
 using namespace std;
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -57,13 +56,6 @@ MainWindow::~MainWindow()
     delete ui;
 
 }
-
-//void MainWindow::addEventObject(DayEvent event, DayElement element){
-//    QFrame frame_event(ui->scrollArea);
-//}
-
-
-
 
 
 void MainWindow::on_calendarWidget_selectionChanged()
@@ -118,7 +110,7 @@ void MainWindow::goToPage(PageName pageName){
     case ADD:
         ui->stackedWidget->setCurrentIndex(2);
         break;
-    case OPTIONS:
+    case INFO:
         ui->stackedWidget->setCurrentIndex(3);
         break;
     }
@@ -133,7 +125,7 @@ void MainWindow::on_pushButton_calendar_clicked()
 
 void MainWindow::on_pushButton_options_clicked()
 {
-    goToPage(OPTIONS);
+    goToPage(INFO);
 }
 
 void MainWindow::on_pushButton_addEvent_clicked()
@@ -195,3 +187,8 @@ void MainWindow::on_timeout()
     this->dayTimer->start();
 }
 
+
+void MainWindow::on_pushButton_sendMail_clicked()
+{
+
+}

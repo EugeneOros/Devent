@@ -20,7 +20,6 @@ SOURCES += \
     dayelement.cpp \
     dayevent.cpp \
     frameevent.cpp \
-    mail.cpp \
     main.cpp \
     mainwindow.cpp \
     timer.cpp
@@ -30,12 +29,11 @@ HEADERS += \
     dayelement.h \
     dayevent.h \
     frameevent.h \
-    mail.h \
     mainwindow.h \
     timer.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -50,20 +48,15 @@ DISTFILES += \
     images/program_details.png \
     images/program_main.png
 
-#SUBDIRS += \
-#    SmtpClient-for-Qt/SMTPEmail.pro \
-#    SmtpClient-for-Qt/SMTPEmail.pro \
-#    SmtpClient-for-Qt/demos/demo1/demo1.pro \
-#    SmtpClient-for-Qt/demos/demo1/demo1.pro \
-#    SmtpClient-for-Qt/demos/demo2/demo2.pro \
-#    SmtpClient-for-Qt/demos/demo2/demo2.pro \
-#    SmtpClient-for-Qt/demos/demo3/demo3.pro \
-#    SmtpClient-for-Qt/demos/demo3/demo3.pro \
-#    SmtpClient-for-Qt/demos/demo4/demo4.pro \
-#    SmtpClient-for-Qt/demos/demo4/demo4.pro
+#smtp-------------------
 
-#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../blat3222/full/ -lblat
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../blat3222/full/ -lblatd
+SMTP_LIBRARY_LOCATION = $$PWD/../build-SMTPEmail-Desktop_Qt_5_14_2_MinGW_64_bit-Debug
+win32:CONFIG(release, debug|release): LIBS += -L$$SMTP_LIBRARY_LOCATION/release/ -lSMTPEmail
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$SMTP_LIBRARY_LOCATION/debug/ -lSMTPEmail
+else:unix: LIBS += -L$$SMTP_LIBRARY_LOCATION -lSMTPEmail
 
-INCLUDEPATH += $$PWD/../blat3222/full
-DEPENDPATH += $$PWD/../blat3222/full
+INCLUDEPATH += $$SMTP_LIBRARY_LOCATION
+DEPENDPATH += $$SMTP_LIBRARY_LOCATION
+#---------------------
+
+
